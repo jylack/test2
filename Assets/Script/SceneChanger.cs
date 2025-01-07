@@ -1,19 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;//씬관리자 기능 사용 예정
+public enum SceneName
+{
+    TitleScene, Stage1Scene, CreditScene, BossScene
+}
 
 public class SceneChanger : MonoBehaviour
 {
 
-    //public string currentSceneName;
+ 
 
-    private void Start() 
+    public void SceneChange(int SceneNum)
     {
-        //currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(SceneNum);
+        SceneManager.sceneLoaded += SceneInit;
+    }
+
+    public void SceneInit(Scene scene, LoadSceneMode mode)
+    {
+        switch ((SceneName)scene.buildIndex)
+        {
+            case SceneName.TitleScene:
+
+                break;
+            case SceneName.Stage1Scene:
+                GameManager.Instance.Init();
+
+                break;
+            case SceneName.CreditScene:
+
+                break;
+            case SceneName.BossScene:
+                GameManager.Instance.Init();
+                break;
+
+        }
 
     }
 
+    public int GetSceneIndex()
+    {
+        return SceneManager.GetActiveScene().buildIndex;
+    }
 
 
     void Update()
@@ -25,25 +53,30 @@ public class SceneChanger : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.A))
             {
                 //Stage1Scene
-                SceneManager.LoadScene(1);
+                //SceneManager.LoadScene(1);
+                SceneChange(1);
 
             }
 
             if (Input.GetKeyDown(KeyCode.C))
             {
                 //CreditScene
-                SceneManager.LoadScene(2);
+                //SceneManager.LoadScene(2);
+                SceneChange(2);
+
             }
 
-            
+
         }
 
-        if(SceneManager.GetActiveScene().buildIndex == 2)
+        if (SceneManager.GetActiveScene().buildIndex == 2)
         {
             if (Input.anyKeyDown == true)
             {
                 //TitleScene
-                SceneManager.LoadScene(0);
+                //SceneManager.LoadScene(0);
+                SceneChange(0);
+
             }
 
         }

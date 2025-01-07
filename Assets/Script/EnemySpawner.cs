@@ -5,6 +5,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;//적 기체 프리팹 설계도
     public GameObject BossPrefab;//적 기체 프리팹 설계도
+    
     int coolTime;
     public int enemyCount;
     int spawnSeed;
@@ -32,6 +33,8 @@ public class EnemySpawner : MonoBehaviour
         enemyCount = 0;
     }
 
+    
+
     // Update is called once per frame
     void Update()
     {
@@ -55,7 +58,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 //isBossCreat = true;
                 //isBossTrun = true;
-                SceneManager.LoadScene(3);
+                GameManager.Instance.SceneChange(3);
 
             }
         }
@@ -63,6 +66,7 @@ public class EnemySpawner : MonoBehaviour
         if (isBossTrun && isBossCreat)
         {
             Instantiate(BossPrefab, transform.position, transform.rotation);
+            GameManager.Instance.Init();
             isBossCreat = false;    
         }
 

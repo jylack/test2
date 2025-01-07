@@ -77,6 +77,7 @@ public class BulletController : MonoBehaviour
             //GameObject.Find("GameManager").GetComponent<GameManager>().AddScore();
             //위와 같은코드
             GameManager.Instance.AddScore();
+            
 
             //GameManager.Instance.AddKillCount();
         }

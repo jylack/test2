@@ -16,11 +16,21 @@ public class BossEnemyController : MonoBehaviour
 
     int coolTime;
 
-    int healthPoint = 30;
+    int maxHealthPoint = 30;
+    int healthPoint;
 
+    public int GetCurrentHP()
+    {
+        return healthPoint;
+    }
+    public int GetMaxHP()
+    {
+        return maxHealthPoint;
+    }
     public void DecreaseHp()
     {
         healthPoint--;
+        GameManager.Instance.IsBossHit();
 
         if (healthPoint < 0)
         {
@@ -43,6 +53,7 @@ public class BossEnemyController : MonoBehaviour
         moveForce = new Vector2(0, -0.1f);//초기 미는 힘 설정
         coolTime = 0;
         player = GameObject.Find("Player");
+        healthPoint = maxHealthPoint;
     }
     public void IsDead()
     {

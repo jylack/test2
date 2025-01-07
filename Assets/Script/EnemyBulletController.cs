@@ -10,8 +10,11 @@ public class EnemyBulletController : MonoBehaviour
     //ㄷPlayerController plCr;
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
+        
+    
+    
         enemyBulletRb = GetComponent<Rigidbody2D>();
         playerInfo = GameObject.Find("Player");
         //plCr = playerInfo.GetComponent<PlayerController>();
@@ -45,10 +48,10 @@ public class EnemyBulletController : MonoBehaviour
         //}
 
         //▼Tag 방식
-        if (collision.gameObject.tag == "Wall") //벽 충돌시 삭제
-        {
-            Destroy(gameObject);
-        }
+        //if (collision.gameObject.tag == "Wall") //벽 충돌시 삭제
+        //{
+        //    Destroy(gameObject);
+        //}
 
         //혹은 더 짧게
         if (collision.gameObject.tag == "Player") //플레이어 충돌시 삭제

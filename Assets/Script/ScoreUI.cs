@@ -12,17 +12,20 @@ public class ScoreUI : MonoBehaviour
         scoreTextGameObject = GetComponent<Text>();        
     }
 
-    public void UpdateScore()
+    public void Init()
     {
-
+        scoreTextGameObject = GetComponent<Text>();
+        float tempScore = GameManager.Instance.GetScore();
+        string toShow = "Score : " + tempScore.ToString("0000");
+        scoreTextGameObject.text = toShow;
     }
 
-    void Update()
+    public void UpdateScore()
     {
         float tempScore = GameManager.Instance.GetScore();
         string toShow = "Score : " + tempScore.ToString("0000");
         scoreTextGameObject.text = toShow;
-
-
     }
+
+
 }
